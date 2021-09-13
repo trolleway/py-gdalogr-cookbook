@@ -147,7 +147,26 @@ Create an ESRI.prj file
 	file.write(spatialRef.ExportToWkt())
 	file.close()
 
+Create a vector layer with srs definition
+-------------------------------------------
 
+.. code-block:: python
+
+    driver = ogr.GetDriverByName("ESRI Shapefile")
+    if os.path.isfile(filename): os.unlink(filename)
+    
+    srs3857 = osr.SpatialReference()
+    srs3857.ImportFromEPSG(3857)    
+    srs4326 = osr.SpatialReference()
+    srs4326.ImportFromEPSG(4326)
+    outDataSource = driver.CreateDataSource(filename)
+    outLayer = outDataSource.CreateLayer(filename, srs=srs3857, geom_type=ogr.wkbMultiLineString)
+    textField = ogr.FieldDefn('SC_9', ogr.OFTString)
+    outLayer.CreateField(textField)
+    
+    outLayer = None
+    outDataSource = None
+    driver = None
 
 
 
