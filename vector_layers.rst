@@ -687,6 +687,12 @@ Create a new Layer with layer create options in one-liner
     ds = ogr.GetDriverByName('LIBKML').CreateDataSource(filepath,
                                                         options=['author_name=name', 'author_uri=http://foo', 'author_email=foo@bar.com'])
     assert ds is not None, ('Unable to create %s.' % filepath)
+    
+Create a new Shapefile layer with UTF-8 encoding for cyrilic data
+--------------------------------------------------------------------
+.. code-block:: python
+
+    outLayer = outDataSource.CreateLayer(filename, srs=srs4326, geom_type=ogr.wkbMultiLineString, options=['ENCODING=UTF-8'])
 
 Create a new Layer from the extent of an existing Layer
 ----------------------------------------------------------   
