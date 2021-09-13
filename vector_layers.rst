@@ -288,7 +288,8 @@ Load data to memory
     indriver=ogr.GetDriverByName('SQLite')
     srcdb = indriver.Open('OUTDATA.sqlite',0)
     
-    #create an output datasource in memory
+    #
+    e an output datasource in memory
     outdriver=ogr.GetDriverByName('MEMORY')
     source=outdriver.CreateDataSource('memData')    
     
@@ -678,6 +679,14 @@ Now let's print out the point geometries:
         geom = feat.GetGeometryRef()
         print geom.ExportToWkt()
 
+Create a new Layer with layer create options in one-liner
+----------------------------------------------------------
+.. code-block:: python
+
+    filepath = '/vsimem/ogr_libkml_write_atom_author.kml'
+    ds = ogr.GetDriverByName('LIBKML').CreateDataSource(filepath,
+                                                        options=['author_name=name', 'author_uri=http://foo', 'author_email=foo@bar.com'])
+    assert ds is not None, ('Unable to create %s.' % filepath)
 
 Create a new Layer from the extent of an existing Layer
 ----------------------------------------------------------   
