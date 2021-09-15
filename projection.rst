@@ -168,7 +168,20 @@ Create a vector layer with srs definition
     outDataSource = None
     driver = None
 
+Test for layer projection
+--------------------------------------
+.. code-block:: python
 
-
+    from osgeo import ogr, osr
+    
+    driver = ogr.GetDriverByName('ESRI Shapefile')
+    dataset = driver.Open('data.shp')
+    layer = dataset.GetLayer()
+    
+    srs4326 = osr.SpatialReference()
+    srs4326.ImportFromEPSG(4326)
+    spatialRef = layer.GetSpatialRef()
+    if not (spatialRef.IsSame(srs4326)):
+        raise OperationException('Invalid vector input. SRS is not EPSG:4326.')        
 
 
