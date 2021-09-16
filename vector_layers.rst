@@ -842,9 +842,8 @@ Inspired by: http://www.kralidis.ca/blog/2010/04/28/batch-centroid-calculations-
     outLayerDefn = outLayer.GetLayerDefn()
 
     # Add features to the ouput Layer
-    for i in range(0, inLayer.GetFeatureCount()):
-        # Get the input Feature
-        inFeature = inLayer.GetFeature(i)
+    for inFeature in inLayer:
+    	# Use python iterator instead of GetFeature
         # Create output Feature
         outFeature = ogr.Feature(outLayerDefn)
         # Add field values from input Layer
