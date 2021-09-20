@@ -9,7 +9,7 @@ Create a Point
     from osgeo import ogr
     point = ogr.Geometry(ogr.wkbPoint)
     point.AddPoint(1198054.34, 648493.09)
-    print point.ExportToWkt()
+    print(point.ExportToWkt())
 
 Create a LineString
 -------------------
@@ -22,7 +22,7 @@ Create a LineString
     line.AddPoint(1188804.0108498496, 652655.7409537067)
     line.AddPoint(1226730.3625203592, 634155.0816022386) 
     line.AddPoint(1281307.30760719, 636467.6640211721)
-    print line.ExportToWkt()
+    print(line.ExportToWkt())
 
 Create a Polygon
 ----------------
@@ -44,7 +44,7 @@ Create a Polygon
     poly = ogr.Geometry(ogr.wkbPolygon)
     poly.AddGeometry(ring)
 
-    print poly.ExportToWkt()
+    print(poly.ExportToWkt())
 
 Create a Polygon with holes
 ----------------------------
